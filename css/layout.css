@@ -14,7 +14,8 @@
 }
 
 .column-full,
-.column-half {
+.column-half,
+.column-fourth {
   width: 100%;
 }
 
