@@ -1,5 +1,6 @@
 body {
   font-family: Raleway, sans-serif;
+  background-color: black;
 }
 
 h2 {
@@ -7,15 +8,64 @@ h2 {
   font-weight: 600;
 }
 
-.display-block {
+label,
+input,
+textarea {
   display: block;
+  width: 100%;
+  border: none;
+}
+
+label {
+  font-weight: 700;
+}
+
+input,
+textarea {
+  padding: 8px 4px;
+}
+
+input:focus,
+textarea:focus {
+  border: 3px solid #ffc52f;
+  outline: none;
 }
 
 .button-style {
   font-family: Poppins, sans-serif;
   font-weight: 500;
+  padding: 4px 8px;
 }
 
-.form-label {
-  font-weight: 700;
+.marg-1-bot {
+  margin-bottom: 1rem;
+}
+
+.pad-1-bot {
+  padding-bottom: 1rem;
+}
+
+.pad-1-2-top {
+  padding-top: 0.5rem;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.white-text {
+  color: white;
+}
+
+.black-text {
+  color: black;
+}
+
+.border-radius {
+  border-radius: 4px;
+}
+
+#search-button {
+  background-color: #ffc52f;
+  border: none;
 }
