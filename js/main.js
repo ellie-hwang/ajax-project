@@ -79,7 +79,7 @@ function renderSearchResult(resultObj) {
   return $liEl;
 }
 
-// var $viewContainer = document.querySelector('div#view-container');
+var $viewContainer = document.querySelector('div#view-container');
 // $viewContainer.addEventListener('click', swapView);
 
 var $searchView = document.querySelector('div#search-view');
@@ -112,5 +112,14 @@ function swapViewNav(event) {
     for (let i = 0; i < $liElementList.length; i++) {
       $liElementList[i].remove();
     }
+  }
+}
+
+var $modalMovieDetails = document.querySelector('#modal-movie-details');
+$viewContainer.addEventListener('click', showMovieDetails);
+
+function showMovieDetails(event) {
+  if (event.target.matches('.info-icon')) {
+    $modalMovieDetails.className = 'modal-bg';
   }
 }
