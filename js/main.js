@@ -79,7 +79,7 @@ function renderSearchResult(resultObj) {
   return $liEl;
 }
 
-var $viewContainer = document.querySelector('div#view-container');
+// var $viewContainer = document.querySelector('div#view-container');
 // $viewContainer.addEventListener('click', swapView);
 
 var $searchView = document.querySelector('div#search-view');
@@ -116,10 +116,77 @@ function swapViewNav(event) {
 }
 
 var $modalMovieDetails = document.querySelector('#modal-movie-details');
-$viewContainer.addEventListener('click', showMovieDetails);
+$resultsView.addEventListener('click', showMovieDetails);
+var $closestLi = null;
+var $movieDetailsContainer = document.querySelector('#movie-details-container');
 
 function showMovieDetails(event) {
   if (event.target.matches('.info-icon')) {
     $modalMovieDetails.className = 'modal-bg';
   }
+  $closestLi = event.target.closest('li');
+  var $imdbID = $closestLi.getAttribute('data-entry-id');
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'http://www.omdbapi.com/?i=' + $imdbID + '&apikey=fd3f5e28');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    var movieObj = xhr.response;
+    var $movieDetails = renderMovieDetails(movieObj);
+    $movieDetailsContainer.appendChild($movieDetails);
+  });
+  xhr.send();
+}
+
+function renderMovieDetails(movieObj) {
+  var $divEl1 = document.createElement('div');
+  $divEl1.className = 'row dialogue-box-results';
+  var $divEl2 = document.createElement('div');
+  $divEl2.className = 'dialogue-poster column-half';
+  var $imgEl = document.createElement('img');
+  $imgEl.className = 'dialogue-poster-img';
+  $imgEl.setAttribute('src', movieObj.Poster);
+  var $divEl3 = document.createElement('div');
+  $divEl3.className = 'column-full column-half text-align-center pad-1';
+  var $divEl4 = document.createElement('div');
+  $divEl4.className = 'text-align-right';
+  var $iEl = document.createElement('i');
+  $iEl.className = 'far fa-times-circle close-icon';
+  var $h2El = document.createElement('h2');
+  $h2El.className = 'no-marg';
+  $h2El.textContent = movieObj.Title;
+  var $h3El1 = document.createElement('h3');
+  $h3El1.className = 'no-marg pad-1-bot';
+  $h3El1.textContent = movieObj.Year;
+  var $h3El2 = document.createElement('h3');
+  $h3El2.className = 'no-marg';
+  $h3El2.textContent = 'SYNOPSIS';
+  var $pEl1 = document.createElement('p');
+  $pEl1.textContent = movieObj.Plot;
+  var $h3El3 = document.createElement('h3');
+  $h3El3.className = 'no-marg';
+  $h3El3.textContent = 'DIRECTORS';
+  var $pEl2 = document.createElement('p');
+  $pEl2.textContent = movieObj.Director;
+  var $h3El4 = document.createElement('h3');
+  $h3El4.className = 'no-marg';
+  $h3El4.textContent = 'CAST';
+  var $pEl3 = document.createElement('p');
+  $pEl3.textContent = movieObj.Actors;
+
+  $divEl2.appendChild($imgEl);
+  $divEl4.appendChild($iEl);
+  $divEl3.appendChild($divEl4);
+  $divEl3.appendChild($h2El);
+  $divEl3.appendChild($h3El1);
+  $divEl3.appendChild($h3El2);
+  $divEl3.appendChild($pEl1);
+  $divEl3.appendChild($h3El3);
+  $divEl3.appendChild($pEl2);
+  $divEl3.appendChild($h3El4);
+  $divEl3.appendChild($pEl3);
+  $divEl1.appendChild($divEl2);
+  $divEl1.appendChild($divEl3);
+
+  return $divEl1;
 }
