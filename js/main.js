@@ -57,7 +57,7 @@ function renderSearchResult(resultObj) {
     $imgEl.setAttribute('src', resultObj.Poster);
   }
   var $iEl = document.createElement('i');
-  $iEl.className = 'fas fa-info-circle';
+  $iEl.className = 'fas fa-info-circle info-icon';
   var $divEl2 = document.createElement('div');
   $divEl2.className = 'pad-1-2-left-right text-align-center';
   var $h3El = document.createElement('h3');
