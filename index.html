@@ -36,39 +36,99 @@
   </header>
 
   <main>
-    <div id="search-container" class="container">
-      <div data-view="search-view">
-        <form id="search-form">
-          <div class="row">
-            <div class="column-full">
-              <h1 class="white-text">Search</h1>
-            </div>
-          </div>
-          <div class="row">
-            <div class="column-full">
-              <label class="pad-1-bot white-text" for="movie-title">Movie Title</label>
-              <input class="marg-1-bot white-text border-radius" type="text" name="movieTitle" id="movie-title">
-              <div class="text-align-right">
-                <button class="black-text button-style border-radius" type="button" id="search-button">SEARCH</button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <div id="results-container" class="container">
-      <div data-view="results-view">
+    <div id="view-container" class="container">
+      <div id="search-view" data-view="search-view">
         <div class="row">
-          <div class="column-full column-fourth">
-            <ul id="results-list">
-              <li>
-
-              </li>
-            </ul>
+          <div class="column-full">
+            <h1 class="white-text">Search</h1>
           </div>
         </div>
+        <form id="search-form"></form>
+        <div class="row">
+          <div class="column-full">
+            <label class="pad-1-bot white-text" for="movie-title">Movie Title</label>
+            <input required class="marg-1-bot border-radius" type="text" name="movieTitle" id="movie-title">
+            <div class="text-align-right">
+              <button class="black-text button-style" type="button" id="search-button">SEARCH</button>
+            </div>
+          </div>
+        </div>
+        </form>
       </div>
+
+      <div id="results-view" data-view="results-view">
+        <div class="row">
+          <div class="column-full">
+            <h1 class="white-text">Results</h1>
+          </div>
+        </div>
+        <ul id="results-list" class="row">
+          <li class="result-card pad-1-bot marg-1-bot column-fourth">
+            <div class="search-img-container">
+              <img class="search-img" src="https://images.moviesanywhere.com/bd47f9b7d090170d79b3085804075d41/c6140695-a35f-46e2-adb7-45ed829fc0c0.jpg">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="pad-1-2-left-right text-align-center">
+              <h3 class="result-title">The Dark Knight</h3>
+              <button type="button" class="button-style review-button">REVIEW</button>
+            </div>
+          </li>
+          <li class="result-card pad-1-bot marg-1-bot column-fourth">
+            <div class="search-img-container">
+              <img class="search-img"
+                src="https://static.wikia.nocookie.net/batman/images/9/94/Batman_Begins_poster4.jpg/revision/latest?cb=20210905163739">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="text-align-center">
+              <h3 class="result-title">Batman Begins</h3>
+              <button type="button" class="button-style review-button">REVIEW</button>
+            </div>
+          </li>
+          <li class="result-card pad-1-bot marg-1-bot column-fourth">
+            <div class="search-img-container">
+              <img class="search-img"
+                src="https://m.media-amazon.com/images/M/MV5BMTk4ODQzNDY3Ml5BMl5BanBnXkFtZTcwODA0NTM4Nw@@._V1_FMjpg_UX1000_.jpg">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="text-align-center">
+              <h3 class="result-title">The Dark Knight Rises</h3>
+              <button type="button" class="button-style review-button">REVIEW</button>
+            </div>
+          </li>
+          <li class="result-card pad-1-bot marg-1-bot column-fourth">
+            <div class="search-img-container">
+              <img class="search-img"
+                src="https://upload.wikimedia.org/wikipedia/en/3/37/Batman_%26_Robin_poster.jpg">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="text-align-center">
+              <h3 class="result-title">Batman & Robin</h3>
+              <button type="button" class="button-style review-button">REVIEW</button>
+            </div>
+          </li>
+          <li class="result-card pad-1-bot marg-1-bot column-fourth display-inline-block">
+            <div class="search-img-container">
+              <img class="search-img" src="https://upload.wikimedia.org/wikipedia/en/3/37/Batman_%26_Robin_poster.jpg">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="text-align-center">
+              <h3 class="result-title">Batman & Robin</h3>
+              <button type="button" class="button-style review-button">REVIEW</button>
+            </div>
+          </li>
+          <li class="result-card pad-1-bot marg-1-bot column-fourth display-inline-block">
+            <div class="search-img-container">
+              <img class="search-img" src="https://upload.wikimedia.org/wikipedia/en/3/37/Batman_%26_Robin_poster.jpg">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="text-align-center">
+              <h3 class="result-title">Batman & Robin</h3>
+              <button type="button" class="button-style review-button">REVIEW</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+
     </div>
   </main>
   <script src="js/data.js"></script>

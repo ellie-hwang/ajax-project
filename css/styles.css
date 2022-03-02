@@ -5,7 +5,7 @@ body {
 
 header {
   background-color: #ffc52f;
-  padding: 1.2rem 0;
+  padding: 10px 0;
 }
 
 h1 {
@@ -17,6 +17,11 @@ h2#logo {
   font-family: Poppins, sans-serif;
   font-weight: 600;
   margin: 0;
+}
+
+h3.result-title {
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
 }
 
 label,
@@ -34,6 +39,7 @@ label {
 input,
 textarea {
   padding: 8px 4px;
+  color: black;
 }
 
 input:focus,
@@ -51,6 +57,26 @@ a {
   padding: 0;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul.row {
+  gap: 2%;
+}
+
+i {
+  position: absolute;
+  color: #ffc52f;
+  right: 1rem;
+  bottom: 1rem;
+}
+
+.search-img-container {
+  position: relative;
+}
+
 .display-block {
   display: block;
 }
@@ -63,10 +89,24 @@ a {
   font-family: Poppins, sans-serif;
   font-weight: 500;
   padding: 4px 8px;
+  border-radius: 4px;
 }
 
 .marg-1-bot {
   margin-bottom: 1rem;
+}
+
+.pad-1-left {
+  padding-left: 1rem;
+}
+
+.pad-1-right {
+  padding-right: 1rem;
+}
+
+.pad-1-2-left-right {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .pad-1-bot {
@@ -79,6 +119,10 @@ a {
 
 .text-align-right {
   text-align: right;
+}
+
+.text-align-center {
+  text-align: center;
 }
 
 .justify-center {
@@ -105,7 +149,23 @@ a {
   border-radius: 4px;
 }
 
+.result-card {
+  background-color: #f0f0f0;
+}
+
+.review-button {
+  background-color: #ffc52f;
+  border: none;
+}
+
 #search-button {
   background-color: #ffc52f;
   border: none;
+}
+
+@media screen and (min-width: 768px) {
+  h3.result-title {
+    font-size: 1.2rem;
+    padding: 0 0.5rem;
+  }
 }

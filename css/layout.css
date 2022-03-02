@@ -19,10 +19,14 @@
   width: 100%;
 }
 
+.search-img {
+  width: 100%;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
-    margin: 0 auto 1rem;
+    margin: 0 auto;
     padding: 0 1.5rem;
   }
 
@@ -30,7 +34,22 @@
     padding: 0 0.75rem;
   }
 
-  .colum-half {
+  .column-half {
     width: 50%;
+  }
+
+  .column-fourth {
+    width: 23%;
+  }
+
+  .search-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  h3.result-title {
+    height: 3rem;
+    font-size: 1em;
   }
 }
