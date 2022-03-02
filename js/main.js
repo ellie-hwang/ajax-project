@@ -39,6 +39,7 @@ var $resultsList = document.querySelector('#results-list');
 function renderSearchResult(resultObj) {
   var $liEl = document.createElement('li');
   $liEl.className = 'result-card pad-1-bot marg-1-bot column-fourth';
+  $liEl.setAttribute('data-entry-id', resultObj.imdbID);
   var $divEl1 = document.createElement('div');
   $divEl1.className = 'search-img-container';
   var $imgEl = document.createElement('img');
