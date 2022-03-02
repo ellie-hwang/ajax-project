@@ -22,9 +22,6 @@ function handleSearch(event) {
       $searchForm.elements.movieTitle.value = '';
     } else {
       data.view = 'results-view';
-      for (let i = 0; i < $liElementList.length; i++) {
-        $liElementList[i].remove(); // trying to remove old search results
-      }
       for (let i = 0; i < $searchResultsRaw.length; i++) {
         var $result = renderSearchResult($searchResultsRaw[i]);
         $resultsList.appendChild($result);
@@ -89,7 +86,6 @@ var $resultsView = document.querySelector('div#results-view');
 
 var $navBar = document.querySelector('#nav-bar');
 // var $navSearch = document.querySelector('#nav-search');
-var $liElementList = document.querySelectorAll('li');
 
 $navBar.addEventListener('click', swapViewNav);
 
@@ -104,5 +100,9 @@ function swapViewNav(event) {
     var $pNoResult = document.querySelector('#p-no-results');
     $pNoResult.className = 'hidden white-text text-align-center';
     $searchForm.elements.movieTitle.value = '';
+    var $liElementList = document.querySelectorAll('li');
+    for (let i = 0; i < $liElementList.length; i++) {
+      $liElementList[i].remove();
+    }
   }
 }
