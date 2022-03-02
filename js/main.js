@@ -7,8 +7,15 @@ $searchForm.addEventListener('submit', handleSearch);
 
 function handleSearch(event) {
   event.preventDefault();
-  var $movieTitle = $searchForm.elements.movieTitle.value;
-
+  var $movieTitleRaw = $searchForm.elements.movieTitle.value;
+  var $movieTitle = '';
+  for (let i = 0; i < $movieTitleRaw.length; i++) {
+    if ($movieTitleRaw[i] === ' ') {
+      $movieTitle += '+';
+    } else {
+      $movieTitle += $movieTitleRaw[i];
+    }
+  }
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'http://www.omdbapi.com/?s=' + $movieTitle + '&apikey=fd3f5e28');
   xhr.responseType = 'json';
