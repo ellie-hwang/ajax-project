@@ -102,10 +102,10 @@ function swapViewNav(event) {
 
 var $modalMovieDetails = document.querySelector('#modal-movie-details');
 $resultsView.addEventListener('click', showMovieDetails);
-var $closestLi = null;
 var $movieDetailsContainer = document.querySelector('#movie-details-container');
 
 function showMovieDetails(event) {
+  var $closestLi = null;
   if (event.target.matches('.info-icon')) {
     $modalMovieDetails.className = 'modal-bg';
     $closestLi = event.target.closest('li');
