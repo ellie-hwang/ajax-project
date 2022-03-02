@@ -14,7 +14,39 @@ function handleSearch(event) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     // var $searchResultsRaw = xhr.response;
+
   });
 
   xhr.send();
+  data.view = 'results-view';
 }
+
+// function renderSearchResult(resultObj) {
+//   var $liEl = document.createElement('li');
+//   $liEl.className = 'result-card pad-1-bot marg-1-bot column-fourth';
+//   var $divEl1 = document.createElement('div');
+//   $divEl1.className = 'search-img-container';
+//   var $imgEl = document.createElement('img');
+//   $imgEl.setAttribute('src', resultObj.Search.Poster);
+//   var $iEl = document.createElement('i');
+//   $iEl.className = 'fas fa-info-circle';
+//   var $divEl2 = document.createElement('div');
+//   $divEl2.className = 'pad-1-2-left-right text-align-center';
+//   var $h3El = document.createElement('h3');
+//   $h3El.className = 'result-title';
+//   $h3El.textContent = resultObj.Search.Title;
+//   var $buttonEl = document.createElement('button');
+//   $buttonEl.className = 'button-style review-button';
+//   $buttonEl.textContent = 'REVIEW';
+
+//   $divEl1.appendChild($imgEl);
+//   $divEl1.appendChild($iEl);
+
+//   $divEl2.appendChild($h3El);
+//   $divEl2.appendChild($buttonEl);
+
+//   $liEl.appendChild($divEl1);
+//   $liEl.appendChild($divEl2);
+
+//   return $liEl;
+// }
