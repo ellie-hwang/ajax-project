@@ -14,14 +14,27 @@ function handleSearch(event) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     var $searchResultsRaw = xhr.response.Search;
-    for (let i = 0; i < $searchResultsRaw.length; i++) {
-      var $result = renderSearchResult($searchResultsRaw[i]);
-      $resultsList.appendChild($result);
+    if (xhr.response.Error === 'Movie not found!') {
+      var $h1Search = document.querySelector('#h1-search');
+      $h1Search.textContent = 'Results';
+      var $pNoResult = document.querySelector('#p-no-results');
+      $pNoResult.className = 'white-text text-align-center';
+      $searchForm.elements.movieTitle.value = '';
+    } else {
+      data.view = 'results-view';
+      for (let i = 0; i < $liElementList.length; i++) {
+        $liElementList[i].remove(); // trying to remove old search results
+      }
+      for (let i = 0; i < $searchResultsRaw.length; i++) {
+        var $result = renderSearchResult($searchResultsRaw[i]);
+        $resultsList.appendChild($result);
+      }
+      $searchView.className = 'hidden';
+      $resultsView.className = '';
     }
   });
 
   xhr.send();
-  data.view = 'results-view';
 }
 
 var $resultsList = document.querySelector('#results-list');
@@ -33,7 +46,11 @@ function renderSearchResult(resultObj) {
   $divEl1.className = 'search-img-container';
   var $imgEl = document.createElement('img');
   $imgEl.className = 'search-img';
-  $imgEl.setAttribute('src', resultObj.Poster);
+  if (resultObj.Poster === 'N/A') {
+    $imgEl.setAttribute('src', 'images/noposter.png');
+  } else {
+    $imgEl.setAttribute('src', resultObj.Poster);
+  }
   var $iEl = document.createElement('i');
   $iEl.className = 'fas fa-info-circle';
   var $divEl2 = document.createElement('div');
@@ -55,4 +72,37 @@ function renderSearchResult(resultObj) {
   $liEl.appendChild($divEl2);
 
   return $liEl;
+}
+
+// var $viewContainer = document.querySelector('div#view-container');
+// $viewContainer.addEventListener('click', swapView);
+
+var $searchView = document.querySelector('div#search-view');
+var $resultsView = document.querySelector('div#results-view');
+
+// function swapView(event) {
+//   if (event.target.matches('#search-button') && data.view === 'results-view') {
+//     $searchView.className = 'hidden';
+//     $resultsView.className = '';
+//   }
+// }
+
+var $navBar = document.querySelector('#nav-bar');
+// var $navSearch = document.querySelector('#nav-search');
+var $liElementList = document.querySelectorAll('li');
+
+$navBar.addEventListener('click', swapViewNav);
+
+function swapViewNav(event) {
+  if (event.target.matches('#nav-search')) {
+    data.view = 'search-view';
+    $searchView.className = '';
+    $resultsView.className = 'hidden';
+    $searchForm.elements.movieTitle.value = '';
+    var $h1Search = document.querySelector('#h1-search');
+    $h1Search.textContent = 'Search';
+    var $pNoResult = document.querySelector('#p-no-results');
+    $pNoResult.className = 'hidden white-text text-align-center';
+    $searchForm.elements.movieTitle.value = '';
+  }
 }
