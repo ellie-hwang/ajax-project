@@ -63,15 +63,11 @@ function renderSearchResult(resultObj) {
   var $h3El = document.createElement('h3');
   $h3El.className = 'result-title';
   $h3El.textContent = resultObj.Title;
-  var $buttonEl = document.createElement('button');
-  $buttonEl.className = 'button-style review-button';
-  $buttonEl.textContent = 'REVIEW';
 
   $divEl1.appendChild($imgEl);
   $divEl1.appendChild($iEl);
 
   $divEl2.appendChild($h3El);
-  $divEl2.appendChild($buttonEl);
 
   $liEl.appendChild($divEl1);
   $liEl.appendChild($divEl2);
@@ -79,21 +75,10 @@ function renderSearchResult(resultObj) {
   return $liEl;
 }
 
-// var $viewContainer = document.querySelector('div#view-container');
-// $viewContainer.addEventListener('click', swapView);
-
 var $searchView = document.querySelector('div#search-view');
 var $resultsView = document.querySelector('div#results-view');
 
-// function swapView(event) {
-//   if (event.target.matches('#search-button') && data.view === 'results-view') {
-//     $searchView.className = 'hidden';
-//     $resultsView.className = '';
-//   }
-// }
-
 var $navBar = document.querySelector('#nav-bar');
-// var $navSearch = document.querySelector('#nav-search');
 
 $navBar.addEventListener('click', swapViewNav);
 
@@ -123,29 +108,33 @@ var $movieDetailsContainer = document.querySelector('#movie-details-container');
 function showMovieDetails(event) {
   if (event.target.matches('.info-icon')) {
     $modalMovieDetails.className = 'modal-bg';
-  }
-  $closestLi = event.target.closest('li');
-  var $imdbID = $closestLi.getAttribute('data-entry-id');
+    $closestLi = event.target.closest('li');
+    var $imdbID = $closestLi.getAttribute('data-entry-id');
 
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://www.omdbapi.com/?i=' + $imdbID + '&apikey=fd3f5e28');
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    var movieObj = xhr.response;
-    var $movieDetails = renderMovieDetails(movieObj);
-    $movieDetailsContainer.appendChild($movieDetails);
-  });
-  xhr.send();
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://www.omdbapi.com/?i=' + $imdbID + '&apikey=fd3f5e28');
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', function () {
+      var movieObj = xhr.response;
+      var $movieDetails = renderMovieDetails(movieObj);
+      $movieDetailsContainer.appendChild($movieDetails);
+    });
+    xhr.send();
+  }
 }
 
 function renderMovieDetails(movieObj) {
   var $divEl1 = document.createElement('div');
-  $divEl1.className = 'row dialogue-box-results';
+  $divEl1.className = 'row dialogue-box-movie-details';
   var $divEl2 = document.createElement('div');
   $divEl2.className = 'dialogue-poster column-half';
   var $imgEl = document.createElement('img');
   $imgEl.className = 'dialogue-poster-img';
-  $imgEl.setAttribute('src', movieObj.Poster);
+  if (movieObj.Poster === 'N/A') {
+    $imgEl.setAttribute('src', 'images/noposter.png');
+  } else {
+    $imgEl.setAttribute('src', movieObj.Poster);
+  }
   var $divEl3 = document.createElement('div');
   $divEl3.className = 'column-full column-half text-align-center pad-1';
   var $divEl4 = document.createElement('div');
@@ -189,4 +178,14 @@ function renderMovieDetails(movieObj) {
   $divEl1.appendChild($divEl3);
 
   return $divEl1;
+}
+
+$modalMovieDetails.addEventListener('click', closeModal);
+
+function closeModal(event) {
+  if (event.target.matches('.close-icon')) {
+    $modalMovieDetails.className = 'modal-bg hidden';
+    var $divEl1 = document.querySelector('.dialogue-box-movie-details');
+    $divEl1.remove();
+  }
 }
