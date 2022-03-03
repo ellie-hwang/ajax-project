@@ -19,6 +19,8 @@
 
 .column-full,
 .column-half,
+.column-third,
+.column-two-third,
 .column-fourth {
   width: 100%;
 }
@@ -38,7 +40,15 @@
     width: 50%;
   }
 
+  .column-third {
+    width: 40%;
+  }
+
   .column-fourth {
     width: 23%;
+  }
+
+  .column-two-third {
+    width: 60%;
   }
 }
