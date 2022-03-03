@@ -226,7 +226,7 @@ function updatePosterPreview(event) {
   $reviewFormImg.setAttribute('src', $posterUrlForm.value);
 }
 
-var $starRating = document.querySelector('#star-rating');
+var $starRating = document.querySelector('.star-rating');
 $starRating.addEventListener('click', setStarRating);
 
 function setStarRating(event) {
@@ -238,6 +238,7 @@ function setStarRating(event) {
     for (let i = 1; i < $stars.length; i++) {
       $stars[i].className = 'far fa-star star-icon';
     }
+    $starRating.setAttribute('id', 'one-star-rating');
   } else if (event.target.matches('#two-star')) {
     for (let i = 0; i < 2; i++) {
       $stars[i].className = 'fas fa-star star-icon';
@@ -245,6 +246,7 @@ function setStarRating(event) {
     for (let i = 2; i < $stars.length; i++) {
       $stars[i].className = 'far fa-star star-icon';
     }
+    $starRating.setAttribute('id', 'two-star-rating');
   } else if (event.target.matches('#three-star')) {
     for (let i = 0; i < 3; i++) {
       $stars[i].className = 'fas fa-star star-icon';
@@ -252,6 +254,7 @@ function setStarRating(event) {
     for (let i = 3; i < $stars.length; i++) {
       $stars[i].className = 'far fa-star star-icon';
     }
+    $starRating.setAttribute('id', 'three-star-rating');
   } else if (event.target.matches('#four-star')) {
     for (let i = 0; i < 4; i++) {
       $stars[i].className = 'fas fa-star star-icon';
@@ -259,10 +262,12 @@ function setStarRating(event) {
     for (let i = 4; i < $stars.length; i++) {
       $stars[i].className = 'far fa-star star-icon';
     }
+    $starRating.setAttribute('id', 'four-star-rating');
   } else if (event.target.matches('#five-star')) {
     for (let i = 0; i < $stars.length; i++) {
       $stars[i].className = 'fas fa-star star-icon';
     }
+    $starRating.setAttribute('id', 'five-star-rating');
   }
 }
 
@@ -274,11 +279,17 @@ function createReview(event) {
     title: $reviewForm.elements.movieTitleForm.value,
     posterUrl: $reviewForm.elements.posterUrlForm.value,
     reviewNotes: $reviewForm.elements.reviewNotesForm.value,
-    nextReviewId: data.nextReviewId
+    starRating: $starRating.getAttribute('id'),
+    reviewId: data.nextReviewId
   };
   data.nextReviewId++;
   data.reviews.unshift(reviewObj);
   $reviewFormImg.setAttribute('src', 'images/placeholder-image-poster.png');
+  var $stars = document.querySelectorAll('.star-icon');
+  for (let i = 0; i < $stars.length; i++) {
+    $stars[i].className = 'far fa-star star-icon';
+  }
+  $starRating.setAttribute('id', 'zero-star-rating');
   $reviewForm.reset();
 
 }
