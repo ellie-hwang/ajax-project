@@ -218,6 +218,14 @@ function popReviewForm(event) {
   }
 }
 
+var $posterUrlForm = document.querySelector('input[name="posterUrlForm"]');
+var $reviewFormImg = document.querySelector('.review-form-img');
+$posterUrlForm.addEventListener('input', updatePosterPreview);
+
+function updatePosterPreview(event) {
+  $reviewFormImg.setAttribute('src', $posterUrlForm.value);
+}
+
 var $starRating = document.querySelector('#star-rating');
 $starRating.addEventListener('click', setStarRating);
 
