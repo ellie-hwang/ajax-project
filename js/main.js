@@ -63,12 +63,14 @@ function renderSearchResult(resultObj) {
   var $h3El = document.createElement('h3');
   $h3El.className = 'result-title';
   $h3El.textContent = resultObj.Title;
-
+  var $buttonEl = document.createElement('button');
+  $buttonEl.className = 'button-style review-button';
+  $buttonEl.textContent = 'REVIEW';
   $divEl1.appendChild($imgEl);
   $divEl1.appendChild($iEl);
 
   $divEl2.appendChild($h3El);
-
+  $divEl2.appendChild($buttonEl);
   $liEl.appendChild($divEl1);
   $liEl.appendChild($divEl2);
 
