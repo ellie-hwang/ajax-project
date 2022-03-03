@@ -82,16 +82,27 @@
           </div>
         </div>
         <div class="row">
-          <div class="column-half pad-3-4-left-right">
+          <div class="column-half pad-3-4-left-right pad-1-bot">
             <img class="review-form-img" src="images/placeholder-image-square.jpg">
           </div>
           <div class="column-half pad-3-4-left-right">
-            <i class="far fa-star yellow-text"></i>
-            <i class="far fa-star yellow-text"></i>
-            <i class="far fa-star yellow-text"></i>
-            <i class="far fa-star yellow-text"></i>
-            <i class="far fa-star yellow-text"></i>
+            <div class="pad-2-bot">
+              <i class="far fa-star star-icon" id="one-star"></i>
+              <i class="far fa-star star-icon" id="two-star"></i>
+              <i class="far fa-star star-icon" id="three-star"></i>
+              <i class="far fa-star star-icon" id="four-star"></i>
+              <i class="far fa-star star-icon" id="five-star"></i>
+            </div>
+            <form>
+              <label class="pad-1-bot white-text" for="movie-title-form">Movie Title</label>
+              <input required class="marg-1-bot border-radius" type="text" name="movieTitleForm" id="movie-title-form">
+              <label class="pad-1-bot white-text" for="poster-url">Poster URL</label>
+              <input required class="marg-1-bot border-radius" type="text" name="posterUrlForm" id="poster-url-form">
+              <label class="pad-1-bot white-text" for="review-notes-form">Review</label>
+              <textarea required class="marg-1-bot border-radius" name="reviewNotesForm" id="notes" rows="7" ></textarea>
+            </form>
           </div>
+
         </div>
       </div>
 

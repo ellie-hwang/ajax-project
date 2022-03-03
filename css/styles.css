@@ -42,6 +42,10 @@ textarea {
   color: black;
 }
 
+textarea {
+  resize: none;
+}
+
 input:focus,
 textarea:focus {
   border: 3px solid #ffc52f;
@@ -81,6 +85,12 @@ i.close-icon {
   cursor: pointer;
 }
 
+i.star-icon {
+  color: #ffc52f;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 .search-img-container {
   position: relative;
 }
@@ -112,17 +122,21 @@ i.close-icon {
   margin-bottom: 1rem;
 }
 
+.pad-1-2-top {
+  padding-top: 0.5rem;
+}
+
+.pad-1-2-left-right {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .pad-1-left {
   padding-left: 1rem;
 }
 
 .pad-1-right {
   padding-right: 1rem;
-}
-
-.pad-1-2-left-right {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 }
 
 .pad-1-bot {
@@ -137,8 +151,8 @@ i.close-icon {
   padding: 1rem;
 }
 
-.pad-1-2-top {
-  padding-top: 0.5rem;
+.pad-2-bot {
+  padding-bottom: 2rem;
 }
 
 .text-align-right {
