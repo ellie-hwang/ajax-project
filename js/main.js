@@ -215,8 +215,45 @@ function popReviewForm(event) {
       }
     });
     xhr.send();
-
   }
 }
 
-// $starRating.addEventListener
+var $starRating = document.querySelector('#star-rating');
+$starRating.addEventListener('click', setStarRating);
+
+function setStarRating(event) {
+  var $stars = document.querySelectorAll('.star-icon');
+  if (event.target.matches('#one-star')) {
+    for (let i = 0; i < 1; i++) {
+      $stars[i].className = 'fas fa-star star-icon';
+    }
+    for (let i = 1; i < $stars.length; i++) {
+      $stars[i].className = 'far fa-star star-icon';
+    }
+  } else if (event.target.matches('#two-star')) {
+    for (let i = 0; i < 2; i++) {
+      $stars[i].className = 'fas fa-star star-icon';
+    }
+    for (let i = 2; i < $stars.length; i++) {
+      $stars[i].className = 'far fa-star star-icon';
+    }
+  } else if (event.target.matches('#three-star')) {
+    for (let i = 0; i < 3; i++) {
+      $stars[i].className = 'fas fa-star star-icon';
+    }
+    for (let i = 3; i < $stars.length; i++) {
+      $stars[i].className = 'far fa-star star-icon';
+    }
+  } else if (event.target.matches('#four-star')) {
+    for (let i = 0; i < 4; i++) {
+      $stars[i].className = 'fas fa-star star-icon';
+    }
+    for (let i = 4; i < $stars.length; i++) {
+      $stars[i].className = 'far fa-star star-icon';
+    }
+  } else if (event.target.matches('#five-star')) {
+    for (let i = 0; i < $stars.length; i++) {
+      $stars[i].className = 'fas fa-star star-icon';
+    }
+  }
+}
