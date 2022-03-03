@@ -79,7 +79,7 @@ function renderSearchResult(resultObj) {
 
 var $searchView = document.querySelector('div#search-view');
 var $resultsView = document.querySelector('div#results-view');
-
+var $reviewFormView = document.querySelector('div#review-form-view');
 var $navBar = document.querySelector('#nav-bar');
 
 $navBar.addEventListener('click', swapViewNav);
@@ -89,16 +89,41 @@ function swapViewNav(event) {
     data.view = 'search-view';
     $searchView.className = '';
     $resultsView.className = 'hidden';
-    $searchForm.elements.movieTitle.value = '';
-    var $h1Search = document.querySelector('#h1-search');
-    $h1Search.textContent = 'Search';
-    var $pNoResult = document.querySelector('#p-no-results');
-    $pNoResult.className = 'hidden white-text text-align-center';
-    $searchForm.elements.movieTitle.value = '';
-    var $liElementList = document.querySelectorAll('li');
-    for (let i = 0; i < $liElementList.length; i++) {
-      $liElementList[i].remove();
-    }
+    $reviewFormView.className = 'hidden';
+    // $searchForm.elements.movieTitle.value = '';
+    // $searchForm.reset();
+    // var $h1Search = document.querySelector('#h1-search');
+    // $h1Search.textContent = 'Search';
+    // var $pNoResult = document.querySelector('#p-no-results');
+    // $pNoResult.className = 'hidden white-text text-align-center';
+    // var $liElementList = document.querySelectorAll('li');
+    // for (let i = 0; i < $liElementList.length; i++) {
+    //   $liElementList[i].remove();
+    // }
+    resetSearchBar();
+    removeSearchResults();
+  } else if (event.target.matches('#nav-post')) {
+    data.view = 'review-form-view';
+    $reviewFormView.className = '';
+    $searchView.className = 'hidden';
+    $resultsView.className = 'hidden';
+    resetSearchBar();
+    removeSearchResults();
+  }
+}
+
+function resetSearchBar() {
+  $searchForm.reset();
+  var $h1Search = document.querySelector('#h1-search');
+  $h1Search.textContent = 'Search';
+  var $pNoResult = document.querySelector('#p-no-results');
+  $pNoResult.className = 'hidden white-text text-align-center';
+}
+
+function removeSearchResults() {
+  var $liElementList = document.querySelectorAll('li');
+  for (let i = 0; i < $liElementList.length; i++) {
+    $liElementList[i].remove();
   }
 }
 
@@ -291,5 +316,4 @@ function createReview(event) {
   }
   $starRating.setAttribute('id', 'zero-star-rating');
   $reviewForm.reset();
-
 }
