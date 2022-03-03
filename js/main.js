@@ -265,3 +265,20 @@ function setStarRating(event) {
     }
   }
 }
+
+$reviewForm.addEventListener('submit', createReview);
+
+function createReview(event) {
+  event.preventDefault();
+  var reviewObj = {
+    title: $reviewForm.elements.movieTitleForm.value,
+    posterUrl: $reviewForm.elements.posterUrlForm.value,
+    reviewNotes: $reviewForm.elements.reviewNotesForm.value,
+    nextReviewId: data.nextReviewId
+  };
+  data.nextReviewId++;
+  data.reviews.unshift(reviewObj);
+  $reviewFormImg.setAttribute('src', 'images/placeholder-image-poster.png');
+  $reviewForm.reset();
+
+}
