@@ -191,3 +191,32 @@ function closeModal(event) {
     $divEl1.remove();
   }
 }
+
+$resultsList.addEventListener('click', popReviewForm);
+var $reviewForm = document.querySelector('#review-form');
+
+function popReviewForm(event) {
+  var $closestLi = null;
+  var $reviewFormImg = document.querySelector('.review-form-img');
+  if (event.target.matches('.review-button')) {
+    $closestLi = event.target.closest('li');
+    var $imdbID = $closestLi.getAttribute('data-entry-id');
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://www.omdbapi.com/?i=' + $imdbID + '&apikey=fd3f5e28');
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', function () {
+      var movieObj = xhr.response;
+      $reviewForm.elements.movieTitleForm.value = movieObj.Title;
+      $reviewForm.elements.posterUrlForm.value = movieObj.Poster;
+      if ($reviewForm.elements.posterUrlForm.value === 'N/A') {
+        $reviewFormImg.setAttribute('src', 'images/noposter.png');
+      } else {
+        $reviewFormImg.setAttribute('src', $reviewForm.elements.posterUrlForm.value);
+      }
+    });
+    xhr.send();
+
+  }
+}
+
+// $starRating.addEventListener

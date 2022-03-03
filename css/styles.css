@@ -232,6 +232,12 @@ i.star-icon {
   cursor: pointer;
 }
 
+#submit-button {
+  background-color: #ffc52f;
+  border: none;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 768px) {
   h3.result-title {
     font-size: 1.2rem;
