@@ -155,7 +155,7 @@ function resetReviewForm() {
 }
 
 function removeSearchResults() {
-  var $liElementList = document.querySelectorAll('li');
+  var $liElementList = document.querySelectorAll('li.result-card');
   for (let i = 0; i < $liElementList.length; i++) {
     $liElementList[i].remove();
   }

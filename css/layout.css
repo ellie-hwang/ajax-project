@@ -29,23 +29,27 @@
   .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 2.5rem;
   }
 
-  .column-full {
+  /* .column-full {
     padding: 0 0.75rem;
-  }
+  } */
 
-  .column-half {
-    width: 50%;
+  .column-fourth {
+    width: 23%;
   }
 
   .column-third {
     width: 40%;
   }
 
-  .column-fourth {
-    width: 23%;
+  .column-48 {
+    width: 48.5%;
+  }
+
+  .column-half {
+    width: 50%;
   }
 
   .column-two-third {
