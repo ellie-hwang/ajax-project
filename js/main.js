@@ -383,4 +383,12 @@ function renderReview(reviewObj) {
   return $liEl;
 }
 
-renderReview(data.reviews[0]);
+window.addEventListener('DOMContentLoaded', displayReviews);
+var $reviewList = document.querySelector('ul#reviews-list');
+
+function displayReviews(event) {
+  for (let i = 0; i < data.reviews.length; i++) {
+    var $review = renderReview(data.reviews[i]);
+    $reviewList.appendChild($review);
+  }
+}
