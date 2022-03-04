@@ -24,16 +24,18 @@
 <body>
   <header>
     <div class="container">
-      <div class="row">
-        <div class="column-full">
-          <nav id="nav-bar" class="row space-between align-center">
-            <h2 id="logo">MovII</h2>
-            <a id="nav-post" class="display-block" href="#">POST</a>
-            <a id="nav-reviews" class="display-block" href="#">REVIEWS</a>
-            <a id="nav-search" class="display-block" href="#">SEARCH</a>
-          </nav>
+
+      <nav id="nav-bar" class="row space-between align-center">
+        <h2 id="logo" class="column-third-nav">MovII</h2>
+        <div class="column-third-nav">
+          <div class="row space-between">
+            <a id="nav-post" class="display-inline-block pad-1-left" href="#">POST</a>
+            <a id="nav-reviews" class="display-inline-block pad-1-left" href="#">REVIEWS</a>
+            <a id="nav-search" class="display-inline-block pad-1-left" href="#">SEARCH</a>
+          </div>
         </div>
-      </div>
+      </nav>
+
     </div>
   </header>
 
@@ -111,19 +113,22 @@
       </div>
 
       <div id="reviews-view" data-view="reviews-view">
-        <div class="row">
+        <div class="row space-between marg-1-2-bot">
           <div class="column-full">
-            <h1 class="white-text">Reviews</h1>
+            <div class="row space-between align-center">
+              <h1 class="white-text no-marg no-pad">Reviews</h1>
+              <button id="new-button" class="button-style" type="button">NEW</button>
+            </div>
           </div>
         </div>
         <div class="row">
-          <div class="column-full text-align-center">
+          <div class="column-full text-align-center hidden">
             <p class="white-text">No reviews have been written</p>
           </div>
         </div>
         <ul id="reviews-list" class="row space-between">
 
-          <li class="column-48 marg-1-1-2-bot text-align-center review-card">
+          <li class="column-half-review marg-1-1-2-bot text-align-center review-card">
             <div class="pad-1-bot">
               <img class="review-img" src="https://images.moviesanywhere.com/cac313fcf9373e9446b6bb8ff171b8d1/8b8d6a81-b8e6-49ad-b835-32c2f01a03c5.jpg">
             </div>
@@ -138,12 +143,12 @@
               <h3 class="no-marg review-title">Zootopia</h3>
               <p class="review-notes pad-2-bot">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum aspernatur adipisci, voluptatum ratione molestiae quod ut debitis deserunt provident velit doloribus optio iste voluptates magnam laborum obcaecati cupiditate quisquam asperiores reiciendis repellendus voluptatibus tenetur? Quos, recusandae a tempore sequi quisquam fugit mollitia, excepturi facere minima, ad minus sapiente hic. Cupiditate?</p>
             </div>
-            <div class="text-align-right">
+            <div>
               <i class="fas fa-pen-alt pen-icon"></i>
             </div>
           </li>
 
-          <li class="column-48 marg-1-1-2-bot text-align-center review-card">
+          <li class="column-half-review marg-1-1-2-bot text-align-center review-card">
             <div class="pad-1-bot">
               <img class="review-img"
                 src="https://upload.wikimedia.org/wikipedia/en/d/db/Spirited_Away_Japanese_poster.png">

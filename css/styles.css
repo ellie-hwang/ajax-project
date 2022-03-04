@@ -178,12 +178,10 @@ i.pen-icon {
   cursor: pointer;
 }
 
-.display-block {
-  display: block;
-}
-
-.display-inline-block {
-  display: inline-block;
+#new-button {
+  background-color: #ffc52f;
+  border: none;
+  cursor: pointer;
 }
 
 .button-style {
@@ -193,8 +191,20 @@ i.pen-icon {
   border-radius: 4px;
 }
 
+.display-block {
+  display: block;
+}
+
+.display-inline-block {
+  display: inline-block;
+}
+
 .no-marg {
   margin: 0;
+}
+
+.marg-1-2-bot {
+  margin-bottom: 0.5rem;
 }
 
 .marg-1-bot {
@@ -203,6 +213,10 @@ i.pen-icon {
 
 .marg-1-1-2-bot {
   margin-bottom: 1.5rem;
+}
+
+.no-pad {
+  padding: 0;
 }
 
 .pad-1-2-top {
@@ -220,6 +234,10 @@ i.pen-icon {
 
 .pad-1-top {
   padding-top: 1rem;
+}
+
+.pad-1-left {
+  padding-left: 1rem;
 }
 
 .pad-1 {

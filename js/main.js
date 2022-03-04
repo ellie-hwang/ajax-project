@@ -326,3 +326,61 @@ function createReview(event) {
   resetSearchBar();
   removeSearchResults();
 }
+
+function renderReview(reviewObj) {
+  var $liEl = document.createElement('li');
+  $liEl.className = 'column-half-review marg-1-1-2-bot text-align-center review-card';
+  $liEl.setAttribute('data-review-id', reviewObj.revieId);
+  var $divEl1 = document.createElement('div');
+  $divEl1.className = 'pad-1-bot';
+  var $imgEl = document.createElement('img');
+  $imgEl.className = 'review-img';
+  $imgEl.setAttribute('src', reviewObj.posterUrl);
+  var $divEl2 = document.createElement('div');
+  $divEl2.className = 'star-rating-review';
+  $divEl2.setAttribute('data-star', '0');
+  var $iEl1 = document.createElement('i');
+  $iEl1.className = 'far fa-star star-icon-review';
+  $iEl1.setAttribute('data-star', '1');
+  var $iEl2 = document.createElement('i');
+  $iEl2.className = 'far fa-star star-icon-review';
+  $iEl2.setAttribute('data-star', '2');
+  var $iEl3 = document.createElement('i');
+  $iEl3.className = 'far fa-star star-icon-review';
+  $iEl3.setAttribute('data-star', '3');
+  var $iEl4 = document.createElement('i');
+  $iEl4.className = 'far fa-star star-icon-review';
+  $iEl4.setAttribute('data-star', '4');
+  var $iEl5 = document.createElement('i');
+  $iEl5.className = 'far fa-star star-icon-review';
+  $iEl5.setAttribute('data-star', '5');
+  var $divEl3 = document.createElement('div');
+  $divEl3.className = 'pad-1';
+  var $h3El = document.createElement('h3');
+  $h3El.className = 'no-marg review-title';
+  $h3El.textContent = reviewObj.title;
+  var $pEl = document.createElement('p');
+  $pEl.className = 'review-notes pad-2-bot';
+  $pEl.textContent = reviewObj.reviewNotes;
+  var $divEl4 = document.createElement('div');
+  var $iEl6 = document.createElement('i');
+  $iEl6.className = 'fas fa-pen-alt pen-icon';
+
+  $divEl1.appendChild($imgEl);
+  $divEl2.appendChild($iEl1);
+  $divEl2.appendChild($iEl2);
+  $divEl2.appendChild($iEl3);
+  $divEl2.appendChild($iEl4);
+  $divEl2.appendChild($iEl5);
+  $divEl3.appendChild($h3El);
+  $divEl3.appendChild($pEl);
+  $divEl4.appendChild($iEl6);
+  $liEl.appendChild($divEl1);
+  $liEl.appendChild($divEl2);
+  $liEl.appendChild($divEl3);
+  $liEl.appendChild($divEl4);
+
+  return $liEl;
+}
+
+renderReview(data.reviews[0]);
