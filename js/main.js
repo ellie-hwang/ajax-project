@@ -150,7 +150,7 @@ function resetReviewForm() {
   for (let i = 0; i < $stars.length; i++) {
     $stars[i].className = 'far fa-star star-icon';
   }
-  $starRating.setAttribute('id', 'zero-star-rating');
+  $starRating.setAttribute('data-star', '0');
   $reviewForm.reset();
 }
 
@@ -290,43 +290,16 @@ $starRating.addEventListener('click', setStarRating);
 
 function setStarRating(event) {
   var $stars = document.querySelectorAll('.star-icon');
-  if (event.target.matches('#one-star')) {
-    for (let i = 0; i < 1; i++) {
+  if (event.target.matches('.star-icon')) {
+    var $starAmt = event.target.getAttribute('data-star');
+    $starAmt = parseInt($starAmt);
+    for (let i = 0; i < $starAmt; i++) {
       $stars[i].className = 'fas fa-star star-icon';
     }
-    for (let i = 1; i < $stars.length; i++) {
+    for (let i = $starAmt; i < $stars.length; i++) {
       $stars[i].className = 'far fa-star star-icon';
     }
-    $starRating.setAttribute('id', 'one-star-rating');
-  } else if (event.target.matches('#two-star')) {
-    for (let i = 0; i < 2; i++) {
-      $stars[i].className = 'fas fa-star star-icon';
-    }
-    for (let i = 2; i < $stars.length; i++) {
-      $stars[i].className = 'far fa-star star-icon';
-    }
-    $starRating.setAttribute('id', 'two-star-rating');
-  } else if (event.target.matches('#three-star')) {
-    for (let i = 0; i < 3; i++) {
-      $stars[i].className = 'fas fa-star star-icon';
-    }
-    for (let i = 3; i < $stars.length; i++) {
-      $stars[i].className = 'far fa-star star-icon';
-    }
-    $starRating.setAttribute('id', 'three-star-rating');
-  } else if (event.target.matches('#four-star')) {
-    for (let i = 0; i < 4; i++) {
-      $stars[i].className = 'fas fa-star star-icon';
-    }
-    for (let i = 4; i < $stars.length; i++) {
-      $stars[i].className = 'far fa-star star-icon';
-    }
-    $starRating.setAttribute('id', 'four-star-rating');
-  } else if (event.target.matches('#five-star')) {
-    for (let i = 0; i < $stars.length; i++) {
-      $stars[i].className = 'fas fa-star star-icon';
-    }
-    $starRating.setAttribute('id', 'five-star-rating');
+    $starRating.setAttribute('data-star', event.target.getAttribute('data-star'));
   }
 }
 
@@ -338,7 +311,7 @@ function createReview(event) {
     title: $reviewForm.elements.movieTitleForm.value,
     posterUrl: $reviewForm.elements.posterUrlForm.value,
     reviewNotes: $reviewForm.elements.reviewNotesForm.value,
-    starRating: $starRating.getAttribute('id'),
+    starRating: $starRating.getAttribute('data-star'),
     reviewId: data.nextReviewId
   };
   data.nextReviewId++;
@@ -348,7 +321,7 @@ function createReview(event) {
   for (let i = 0; i < $stars.length; i++) {
     $stars[i].className = 'far fa-star star-icon';
   }
-  $starRating.setAttribute('id', 'zero-star-rating');
+  $starRating.setAttribute('data-star', '0');
   $reviewForm.reset();
   resetSearchBar();
   removeSearchResults();
