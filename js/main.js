@@ -348,6 +348,8 @@ function createReview(event) {
     $stars[i].className = 'far fa-star star-icon';
   }
   $reviewList.prepend(renderReview(reviewObj));
+  var $noReviewsMsg = document.querySelector('#no-reviews-msg');
+  $noReviewsMsg.className = 'column-full text-align-center hidden';
   data.view = 'reviews-view';
   $reviewsView.className = '';
   $reviewFormView.className = 'hidden';
@@ -412,8 +414,13 @@ window.addEventListener('DOMContentLoaded', displayReviews);
 var $reviewList = document.querySelector('ul#reviews-list');
 
 function displayReviews(event) {
-  for (let i = 0; i < data.reviews.length; i++) {
-    var $review = renderReview(data.reviews[i]);
-    $reviewList.appendChild($review);
+  var $noReviewsMsg = document.querySelector('#no-reviews-msg');
+  if (data.reviews.length === 0) {
+    $noReviewsMsg.className = 'column-full text-align-center';
+  } else {
+    for (let i = 0; i < data.reviews.length; i++) {
+      var $review = renderReview(data.reviews[i]);
+      $reviewList.appendChild($review);
+    }
   }
 }
