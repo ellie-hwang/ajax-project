@@ -24,15 +24,18 @@
 <body>
   <header>
     <div class="container">
-      <div class="row">
-        <div class="column-full">
-          <nav id="nav-bar" class="row space-between align-center">
-            <h2 id="logo">MovII</h2>
-            <a id="nav-post" class="display-bock" href="#">POST</a>
-            <a id="nav-search" class="display-block" href="#">SEARCH</a>
-          </nav>
+
+      <nav id="nav-bar" class="row space-between align-center">
+        <h2 id="logo" class="column-third-nav">MovII</h2>
+        <div class="column-third-nav">
+          <div class="row space-between">
+            <a id="nav-post" class="display-inline-block pad-1-left" href="#">POST</a>
+            <a id="nav-reviews" class="display-inline-block pad-1-left" href="#">REVIEWS</a>
+            <a id="nav-search" class="display-inline-block pad-1-left" href="#">SEARCH</a>
+          </div>
         </div>
-      </div>
+      </nav>
+
     </div>
   </header>
 
@@ -83,10 +86,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="column-third pad-3-4-left-right">
+          <div class="column-third">
             <img class="review-form-img" src="images/placeholder-image-poster.png">
           </div>
-          <div class="column-two-third pad-3-4-left-right pad-1-top">
+          <div class="column-two-third pad-1-top pad-1-1-2-left">
             <div class="pad-2-bot star-rating" data-star="0">
               <i class="far fa-star star-icon" data-star="1"></i>
               <i class="far fa-star star-icon" data-star="2"></i>
@@ -101,15 +104,32 @@
               <input required class="marg-1-bot border-radius" type="text" name="posterUrlForm" id="poster-url-form">
               <label class="pad-1-bot white-text" for="review-notes-form">Review</label>
               <textarea required class="marg-1-bot border-radius" name="reviewNotesForm" id="notes" rows="7" ></textarea>
-              <div class="text-align-right">
+              <div class="text-align-right marg-1-1-2-bot">
                 <button class="black-text button-style" type="submit" id="submit-button">SUBMIT</button>
               </div>
             </form>
           </div>
-
         </div>
       </div>
 
+      <div id="reviews-view" data-view="reviews-view" class="hidden">
+        <div class="row space-between">
+          <div class="column-full">
+            <div class="row space-between align-center">
+              <h1 class="white-text">Reviews</h1>
+              <button id="new-button" class="button-style" type="button">NEW</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div id="no-reviews-msg" class="column-full text-align-center hidden">
+            <p class="white-text">No reviews have been written</p>
+          </div>
+        </div>
+        <ul id="reviews-list" class="row space-between">
+
+        </ul>
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>

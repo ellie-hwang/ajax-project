@@ -46,7 +46,7 @@ var $resultsList = document.querySelector('#results-list');
 
 function renderSearchResult(resultObj) {
   var $liEl = document.createElement('li');
-  $liEl.className = 'result-card pad-1-bot marg-1-bot column-fourth';
+  $liEl.className = 'result-card pad-1-bot marg-1-1-2-bot column-fourth';
   $liEl.setAttribute('data-entry-id', resultObj.imdbID);
   var $divEl1 = document.createElement('div');
   $divEl1.className = 'search-img-container';
@@ -81,6 +81,7 @@ function renderSearchResult(resultObj) {
 var $searchView = document.querySelector('div#search-view');
 var $resultsView = document.querySelector('div#results-view');
 var $reviewFormView = document.querySelector('div#review-form-view');
+var $reviewsView = document.querySelector('div#reviews-view');
 var $navBar = document.querySelector('#nav-bar');
 
 $navBar.addEventListener('click', swapViewNav);
@@ -89,6 +90,7 @@ function swapViewNav(event) {
   if (event.target.matches('#nav-search')) {
     data.view = 'search-view';
     $searchView.className = '';
+    $reviewsView.className = 'hidden';
     $resultsView.className = 'hidden';
     $reviewFormView.className = 'hidden';
     resetReviewForm();
@@ -97,6 +99,16 @@ function swapViewNav(event) {
   } else if (event.target.matches('#nav-post')) {
     data.view = 'review-form-view';
     $reviewFormView.className = '';
+    $reviewsView.className = 'hidden';
+    $searchView.className = 'hidden';
+    $resultsView.className = 'hidden';
+    resetReviewForm();
+    resetSearchBar();
+    removeSearchResults();
+  } else if (event.target.matches('#nav-reviews')) {
+    data.view = 'reviews-view';
+    $reviewsView.className = '';
+    $reviewFormView.className = 'hidden';
     $searchView.className = 'hidden';
     $resultsView.className = 'hidden';
     resetReviewForm();
@@ -114,7 +126,13 @@ function swapView(event) {
     $reviewFormView.className = '';
     $searchView.className = 'hidden';
     $resultsView.className = 'hidden';
-    data.results = [];
+    $reviewsView.className = 'hidden';
+  } else if (event.target.matches('#new-button')) {
+    data.view = 'review-form-view';
+    $reviewFormView.className = '';
+    $searchView.className = 'hidden';
+    $resultsView.className = 'hidden';
+    $reviewsView.className = 'hidden';
   }
 }
 
@@ -125,12 +143,20 @@ function showSameView(event) {
     $searchView.className = '';
     $resultsView.className = 'hidden';
     $reviewFormView.className = 'hidden';
+    $reviewsView.className = 'hidden';
   } else if (data.view === 'results-view') {
     $resultsView.className = '';
     $searchView.className = 'hidden';
     $reviewFormView.className = 'hidden';
+    $reviewsView.className = 'hidden';
   } else if (data.view === 'review-form-view') {
     $reviewFormView.className = '';
+    $searchView.className = 'hidden';
+    $resultsView.className = 'hidden';
+    $reviewsView.className = 'hidden';
+  } else if (data.view === 'reviews-view') {
+    $reviewsView.className = '';
+    $reviewFormView.className = 'hidden';
     $searchView.className = 'hidden';
     $resultsView.className = 'hidden';
   }
@@ -155,7 +181,7 @@ function resetReviewForm() {
 }
 
 function removeSearchResults() {
-  var $liElementList = document.querySelectorAll('li');
+  var $liElementList = document.querySelectorAll('li.result-card');
   for (let i = 0; i < $liElementList.length; i++) {
     $liElementList[i].remove();
   }
@@ -321,8 +347,75 @@ function createReview(event) {
   for (let i = 0; i < $stars.length; i++) {
     $stars[i].className = 'far fa-star star-icon';
   }
+  $reviewList.prepend(renderReview(reviewObj));
+  var $noReviewsMsg = document.querySelector('#no-reviews-msg');
+  $noReviewsMsg.className = 'column-full text-align-center hidden';
+  data.view = 'reviews-view';
+  $reviewsView.className = '';
+  $reviewFormView.className = 'hidden';
+  $searchView.className = 'hidden';
+  $resultsView.className = 'hidden';
   $starRating.setAttribute('data-star', '0');
   $reviewForm.reset();
   resetSearchBar();
   removeSearchResults();
+}
+
+function renderReview(reviewObj) {
+  var $liEl = document.createElement('li');
+  $liEl.className = 'column-half-review marg-1-1-2-bot text-align-center review-card';
+  $liEl.setAttribute('data-review-id', reviewObj.revieId);
+  var $divEl1 = document.createElement('div');
+  $divEl1.className = 'pad-1-bot';
+  var $imgEl = document.createElement('img');
+  $imgEl.className = 'review-img';
+  $imgEl.setAttribute('src', reviewObj.posterUrl);
+  var $divEl2 = document.createElement('div');
+  $divEl2.className = 'star-rating-review';
+  $divEl2.setAttribute('data-star', '0');
+
+  var $starAmt = parseInt(reviewObj.starRating);
+  for (let j = 0; j < $starAmt; j++) {
+    var $iEl1 = document.createElement('i');
+    $iEl1.className = 'fas fa-star star-icon-review';
+    $divEl2.appendChild($iEl1);
+  }
+  for (let j = $starAmt; j < 5; j++) {
+    var $iEl2 = document.createElement('i');
+    $iEl2.className = 'far fa-star star-icon-review';
+    $divEl2.appendChild($iEl2);
+  }
+
+  var $divEl3 = document.createElement('div');
+  $divEl3.className = 'pad-1';
+  var $h3El = document.createElement('h3');
+  $h3El.className = 'no-marg review-title';
+  $h3El.textContent = reviewObj.title;
+  var $pEl = document.createElement('p');
+  $pEl.className = 'review-notes pad-2-bot';
+  $pEl.textContent = reviewObj.reviewNotes;
+
+  $divEl1.appendChild($imgEl);
+  $divEl3.appendChild($h3El);
+  $divEl3.appendChild($pEl);
+  $liEl.appendChild($divEl1);
+  $liEl.appendChild($divEl2);
+  $liEl.appendChild($divEl3);
+
+  return $liEl;
+}
+
+window.addEventListener('DOMContentLoaded', displayReviews);
+var $reviewList = document.querySelector('ul#reviews-list');
+
+function displayReviews(event) {
+  var $noReviewsMsg = document.querySelector('#no-reviews-msg');
+  if (data.reviews.length === 0) {
+    $noReviewsMsg.className = 'column-full text-align-center';
+  } else {
+    for (let i = 0; i < data.reviews.length; i++) {
+      var $review = renderReview(data.reviews[i]);
+      $reviewList.appendChild($review);
+    }
+  }
 }
