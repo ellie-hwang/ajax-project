@@ -339,21 +339,35 @@ function renderReview(reviewObj) {
   var $divEl2 = document.createElement('div');
   $divEl2.className = 'star-rating-review';
   $divEl2.setAttribute('data-star', '0');
-  var $iEl1 = document.createElement('i');
-  $iEl1.className = 'far fa-star star-icon-review';
-  $iEl1.setAttribute('data-star', '1');
-  var $iEl2 = document.createElement('i');
-  $iEl2.className = 'far fa-star star-icon-review';
-  $iEl2.setAttribute('data-star', '2');
-  var $iEl3 = document.createElement('i');
-  $iEl3.className = 'far fa-star star-icon-review';
-  $iEl3.setAttribute('data-star', '3');
-  var $iEl4 = document.createElement('i');
-  $iEl4.className = 'far fa-star star-icon-review';
-  $iEl4.setAttribute('data-star', '4');
-  var $iEl5 = document.createElement('i');
-  $iEl5.className = 'far fa-star star-icon-review';
-  $iEl5.setAttribute('data-star', '5');
+
+  var $starAmt = parseInt(reviewObj.starRating);
+  for (let j = 0; j < $starAmt; j++) {
+    var $iEl1 = document.createElement('i');
+    $iEl1.className = 'fas fa-star star-icon-review';
+    $divEl2.appendChild($iEl1);
+  }
+  for (let j = $starAmt; j < 5; j++) {
+    var $iEl2 = document.createElement('i');
+    $iEl2.className = 'far fa-star star-icon-review';
+    $divEl2.appendChild($iEl2);
+  }
+
+  // var $iEl1 = document.createElement('i');
+  // $iEl1.className = 'far fa-star star-icon-review';
+  // $iEl1.setAttribute('data-star', '1');
+  // var $iEl2 = document.createElement('i');
+  // $iEl2.className = 'far fa-star star-icon-review';
+  // $iEl2.setAttribute('data-star', '2');
+  // var $iEl3 = document.createElement('i');
+  // $iEl3.className = 'far fa-star star-icon-review';
+  // $iEl3.setAttribute('data-star', '3');
+  // var $iEl4 = document.createElement('i');
+  // $iEl4.className = 'far fa-star star-icon-review';
+  // $iEl4.setAttribute('data-star', '4');
+  // var $iEl5 = document.createElement('i');
+  // $iEl5.className = 'far fa-star star-icon-review';
+  // $iEl5.setAttribute('data-star', '5');
+
   var $divEl3 = document.createElement('div');
   $divEl3.className = 'pad-1';
   var $h3El = document.createElement('h3');
@@ -367,11 +381,11 @@ function renderReview(reviewObj) {
   $iEl6.className = 'fas fa-pen-alt pen-icon';
 
   $divEl1.appendChild($imgEl);
-  $divEl2.appendChild($iEl1);
-  $divEl2.appendChild($iEl2);
-  $divEl2.appendChild($iEl3);
-  $divEl2.appendChild($iEl4);
-  $divEl2.appendChild($iEl5);
+  // $divEl2.appendChild($iEl1);
+  // $divEl2.appendChild($iEl2);
+  // $divEl2.appendChild($iEl3);
+  // $divEl2.appendChild($iEl4);
+  // $divEl2.appendChild($iEl5);
   $divEl3.appendChild($h3El);
   $divEl3.appendChild($pEl);
   $divEl4.appendChild($iEl6);
