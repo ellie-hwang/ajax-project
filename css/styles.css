@@ -40,6 +40,8 @@ input,
 textarea {
   padding: 8px 4px;
   color: black;
+  font-size: 1rem;
+  font-family: Raleway, sans-serif;
 }
 
 textarea {

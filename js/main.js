@@ -35,6 +35,7 @@ function handleSearch(event) {
       }
       $searchView.className = 'hidden';
       $resultsView.className = '';
+      $searchForm.reset();
     }
   });
 
@@ -90,16 +91,7 @@ function swapViewNav(event) {
     $searchView.className = '';
     $resultsView.className = 'hidden';
     $reviewFormView.className = 'hidden';
-    // $searchForm.elements.movieTitle.value = '';
-    // $searchForm.reset();
-    // var $h1Search = document.querySelector('#h1-search');
-    // $h1Search.textContent = 'Search';
-    // var $pNoResult = document.querySelector('#p-no-results');
-    // $pNoResult.className = 'hidden white-text text-align-center';
-    // var $liElementList = document.querySelectorAll('li');
-    // for (let i = 0; i < $liElementList.length; i++) {
-    //   $liElementList[i].remove();
-    // }
+    resetReviewForm();
     resetSearchBar();
     removeSearchResults();
   } else if (event.target.matches('#nav-post')) {
@@ -107,8 +99,40 @@ function swapViewNav(event) {
     $reviewFormView.className = '';
     $searchView.className = 'hidden';
     $resultsView.className = 'hidden';
+    resetReviewForm();
     resetSearchBar();
     removeSearchResults();
+  }
+}
+
+var $viewContainer = document.querySelector('div#view-container');
+$viewContainer.addEventListener('click', swapView);
+
+function swapView(event) {
+  if (event.target.matches('.review-button')) {
+    data.view = 'review-form-view';
+    $reviewFormView.className = '';
+    $searchView.className = 'hidden';
+    $resultsView.className = 'hidden';
+    data.results = [];
+  }
+}
+
+window.addEventListener('DOMContentLoaded', showSameView);
+
+function showSameView(event) {
+  if (data.view === 'search-view') {
+    $searchView.className = '';
+    $resultsView.className = 'hidden';
+    $reviewFormView.className = 'hidden';
+  } else if (data.view === 'results-view') {
+    $resultsView.className = '';
+    $searchView.className = 'hidden';
+    $reviewFormView.className = 'hidden';
+  } else if (data.view === 'review-form-view') {
+    $reviewFormView.className = '';
+    $searchView.className = 'hidden';
+    $resultsView.className = 'hidden';
   }
 }
 
@@ -118,6 +142,16 @@ function resetSearchBar() {
   $h1Search.textContent = 'Search';
   var $pNoResult = document.querySelector('#p-no-results');
   $pNoResult.className = 'hidden white-text text-align-center';
+}
+
+function resetReviewForm() {
+  $reviewFormImg.setAttribute('src', 'images/placeholder-image-poster.png');
+  var $stars = document.querySelectorAll('.star-icon');
+  for (let i = 0; i < $stars.length; i++) {
+    $stars[i].className = 'far fa-star star-icon';
+  }
+  $starRating.setAttribute('id', 'zero-star-rating');
+  $reviewForm.reset();
 }
 
 function removeSearchResults() {
@@ -316,4 +350,6 @@ function createReview(event) {
   }
   $starRating.setAttribute('id', 'zero-star-rating');
   $reviewForm.reset();
+  resetSearchBar();
+  removeSearchResults();
 }
