@@ -76,6 +76,10 @@ ul#results-list {
   gap: 2.5%;
 }
 
+ul#reviews-list {
+  margin: 0;
+}
+
 i.info-icon {
   position: absolute;
   color: #ffc52f;
