@@ -364,7 +364,7 @@ function createReview(event) {
 function renderReview(reviewObj) {
   var $liEl = document.createElement('li');
   $liEl.className = 'column-half-review marg-1-1-2-bot text-align-center review-card';
-  $liEl.setAttribute('data-review-id', reviewObj.revieId);
+  $liEl.setAttribute('data-review-id', reviewObj.reviewId);
   var $divEl1 = document.createElement('div');
   $divEl1.className = 'pad-1-bot';
   var $imgEl = document.createElement('img');
