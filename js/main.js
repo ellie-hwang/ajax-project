@@ -394,18 +394,13 @@ function renderReview(reviewObj) {
   var $pEl = document.createElement('p');
   $pEl.className = 'review-notes pad-2-bot';
   $pEl.textContent = reviewObj.reviewNotes;
-  // var $divEl4 = document.createElement('div');
-  // var $iEl6 = document.createElement('i');
-  // $iEl6.className = 'fas fa-pen-alt pen-icon';
 
   $divEl1.appendChild($imgEl);
   $divEl3.appendChild($h3El);
   $divEl3.appendChild($pEl);
-  // $divEl4.appendChild($iEl6);
   $liEl.appendChild($divEl1);
   $liEl.appendChild($divEl2);
   $liEl.appendChild($divEl3);
-  // $liEl.appendChild($divEl4);
 
   return $liEl;
 }
