@@ -35,6 +35,7 @@ function handleSearch(event) {
       }
       $searchView.className = 'hidden';
       $resultsView.className = '';
+      $searchForm.reset();
     }
   });
 
@@ -63,12 +64,14 @@ function renderSearchResult(resultObj) {
   var $h3El = document.createElement('h3');
   $h3El.className = 'result-title';
   $h3El.textContent = resultObj.Title;
-
+  var $buttonEl = document.createElement('button');
+  $buttonEl.className = 'button-style review-button';
+  $buttonEl.textContent = 'REVIEW';
   $divEl1.appendChild($imgEl);
   $divEl1.appendChild($iEl);
 
   $divEl2.appendChild($h3El);
-
+  $divEl2.appendChild($buttonEl);
   $liEl.appendChild($divEl1);
   $liEl.appendChild($divEl2);
 
@@ -77,7 +80,7 @@ function renderSearchResult(resultObj) {
 
 var $searchView = document.querySelector('div#search-view');
 var $resultsView = document.querySelector('div#results-view');
-
+var $reviewFormView = document.querySelector('div#review-form-view');
 var $navBar = document.querySelector('#nav-bar');
 
 $navBar.addEventListener('click', swapViewNav);
@@ -87,16 +90,74 @@ function swapViewNav(event) {
     data.view = 'search-view';
     $searchView.className = '';
     $resultsView.className = 'hidden';
-    $searchForm.elements.movieTitle.value = '';
-    var $h1Search = document.querySelector('#h1-search');
-    $h1Search.textContent = 'Search';
-    var $pNoResult = document.querySelector('#p-no-results');
-    $pNoResult.className = 'hidden white-text text-align-center';
-    $searchForm.elements.movieTitle.value = '';
-    var $liElementList = document.querySelectorAll('li');
-    for (let i = 0; i < $liElementList.length; i++) {
-      $liElementList[i].remove();
-    }
+    $reviewFormView.className = 'hidden';
+    resetReviewForm();
+    resetSearchBar();
+    removeSearchResults();
+  } else if (event.target.matches('#nav-post')) {
+    data.view = 'review-form-view';
+    $reviewFormView.className = '';
+    $searchView.className = 'hidden';
+    $resultsView.className = 'hidden';
+    resetReviewForm();
+    resetSearchBar();
+    removeSearchResults();
+  }
+}
+
+var $viewContainer = document.querySelector('div#view-container');
+$viewContainer.addEventListener('click', swapView);
+
+function swapView(event) {
+  if (event.target.matches('.review-button')) {
+    data.view = 'review-form-view';
+    $reviewFormView.className = '';
+    $searchView.className = 'hidden';
+    $resultsView.className = 'hidden';
+    data.results = [];
+  }
+}
+
+window.addEventListener('DOMContentLoaded', showSameView);
+
+function showSameView(event) {
+  if (data.view === 'search-view') {
+    $searchView.className = '';
+    $resultsView.className = 'hidden';
+    $reviewFormView.className = 'hidden';
+  } else if (data.view === 'results-view') {
+    $resultsView.className = '';
+    $searchView.className = 'hidden';
+    $reviewFormView.className = 'hidden';
+  } else if (data.view === 'review-form-view') {
+    $reviewFormView.className = '';
+    $searchView.className = 'hidden';
+    $resultsView.className = 'hidden';
+  }
+}
+
+function resetSearchBar() {
+  $searchForm.reset();
+  var $h1Search = document.querySelector('#h1-search');
+  $h1Search.textContent = 'Search';
+  var $pNoResult = document.querySelector('#p-no-results');
+  $pNoResult.className = 'hidden white-text text-align-center';
+}
+
+function resetReviewForm() {
+  $reviewFormImg.setAttribute('src', 'images/placeholder-image-poster.png');
+  var $stars = document.querySelectorAll('.star-icon');
+  for (let i = 0; i < $stars.length; i++) {
+    $stars[i].className = 'far fa-star star-icon';
+  }
+  $starRating.setAttribute('data-star', '0');
+  $reviewForm.reset();
+}
+
+function removeSearchResults() {
+  var $liElementList = document.querySelectorAll('li');
+  for (let i = 0; i < $liElementList.length; i++) {
+    $liElementList[i].remove();
   }
 }
 
@@ -188,4 +249,80 @@ function closeModal(event) {
     var $divEl1 = document.querySelector('.dialogue-box-movie-details');
     $divEl1.remove();
   }
+}
+
+$resultsList.addEventListener('click', popReviewForm);
+var $reviewForm = document.querySelector('#review-form');
+
+function popReviewForm(event) {
+  var $closestLi = null;
+  var $reviewFormImg = document.querySelector('.review-form-img');
+  if (event.target.matches('.review-button')) {
+    $closestLi = event.target.closest('li');
+    var $imdbID = $closestLi.getAttribute('data-entry-id');
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://www.omdbapi.com/?i=' + $imdbID + '&apikey=fd3f5e28');
+    xhr.responseType = 'json';
+    xhr.addEventListener('load', function () {
+      var movieObj = xhr.response;
+      $reviewForm.elements.movieTitleForm.value = movieObj.Title;
+      $reviewForm.elements.posterUrlForm.value = movieObj.Poster;
+      if ($reviewForm.elements.posterUrlForm.value === 'N/A') {
+        $reviewFormImg.setAttribute('src', 'images/noposter.png');
+      } else {
+        $reviewFormImg.setAttribute('src', $reviewForm.elements.posterUrlForm.value);
+      }
+    });
+    xhr.send();
+  }
+}
+
+var $posterUrlForm = document.querySelector('input[name="posterUrlForm"]');
+var $reviewFormImg = document.querySelector('.review-form-img');
+$posterUrlForm.addEventListener('input', updatePosterPreview);
+
+function updatePosterPreview(event) {
+  $reviewFormImg.setAttribute('src', $posterUrlForm.value);
+}
+
+var $starRating = document.querySelector('.star-rating');
+$starRating.addEventListener('click', setStarRating);
+
+function setStarRating(event) {
+  var $stars = document.querySelectorAll('.star-icon');
+  if (event.target.matches('.star-icon')) {
+    var $starAmt = event.target.getAttribute('data-star');
+    $starAmt = parseInt($starAmt);
+    for (let i = 0; i < $starAmt; i++) {
+      $stars[i].className = 'fas fa-star star-icon';
+    }
+    for (let i = $starAmt; i < $stars.length; i++) {
+      $stars[i].className = 'far fa-star star-icon';
+    }
+    $starRating.setAttribute('data-star', event.target.getAttribute('data-star'));
+  }
+}
+
+$reviewForm.addEventListener('submit', createReview);
+
+function createReview(event) {
+  event.preventDefault();
+  var reviewObj = {
+    title: $reviewForm.elements.movieTitleForm.value,
+    posterUrl: $reviewForm.elements.posterUrlForm.value,
+    reviewNotes: $reviewForm.elements.reviewNotesForm.value,
+    starRating: $starRating.getAttribute('data-star'),
+    reviewId: data.nextReviewId
+  };
+  data.nextReviewId++;
+  data.reviews.unshift(reviewObj);
+  $reviewFormImg.setAttribute('src', 'images/placeholder-image-poster.png');
+  var $stars = document.querySelectorAll('.star-icon');
+  for (let i = 0; i < $stars.length; i++) {
+    $stars[i].className = 'far fa-star star-icon';
+  }
+  $starRating.setAttribute('data-star', '0');
+  $reviewForm.reset();
+  resetSearchBar();
+  removeSearchResults();
 }
