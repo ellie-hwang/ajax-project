@@ -424,3 +424,39 @@ function displayReviews(event) {
     }
   }
 }
+
+$reviewList.addEventListener('click', editReview);
+
+function editReview(event) {
+  var $closestLi = null;
+  if (event.target.matches('.pen-icon')) {
+    data.view = 'review-form-view';
+    var $reviewFormH1 = document.querySelector('#review-form-h1');
+    $reviewFormH1.textContent = 'Edit Review';
+    $reviewFormView.className = '';
+    $reviewsView.className = 'hidden';
+    $closestLi = event.target.closest('li');
+    var $reviewId = $closestLi.getAttribute('data-review-id');
+    $reviewId = parseInt($reviewId);
+    for (let i = 0; i < data.reviews.length; i++) {
+      if (data.reviews[i].reviewId === $reviewId) {
+        data.editing = data.reviews[i];
+      }
+    }
+    $reviewForm.elements.movieTitleForm.value = data.editing.title;
+    $reviewForm.elements.posterUrlForm.value = data.editing.posterUrl;
+    if ($reviewForm.elements.posterUrlForm.value === 'N/A') {
+      $reviewFormImg.setAttribute('src', 'images/noposter.png');
+    } else {
+      $reviewFormImg.setAttribute('src', $reviewForm.elements.posterUrlForm.value);
+    }
+    var $starAmt = parseInt(data.editing.starRating);
+    var $stars = document.querySelectorAll('.star-icon');
+    for (let i = 0; i < $starAmt; i++) {
+      $stars[i].className = 'fas fa-star star-icon';
+    }
+    for (let i = $starAmt; i < $stars.length; i++) {
+      $stars[i].className = 'far fa-star star-icon';
+    }
+  }
+}
