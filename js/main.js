@@ -93,6 +93,7 @@ function swapViewNav(event) {
     $reviewsView.className = 'hidden';
     $resultsView.className = 'hidden';
     $reviewFormView.className = 'hidden';
+    data.editing = null;
     resetReviewForm();
     resetSearchBar();
     removeSearchResults();
@@ -102,6 +103,7 @@ function swapViewNav(event) {
     $reviewsView.className = 'hidden';
     $searchView.className = 'hidden';
     $resultsView.className = 'hidden';
+    data.editing = null;
     resetReviewForm();
     resetSearchBar();
     removeSearchResults();
@@ -111,6 +113,7 @@ function swapViewNav(event) {
     $reviewFormView.className = 'hidden';
     $searchView.className = 'hidden';
     $resultsView.className = 'hidden';
+    data.editing = null;
     resetReviewForm();
     resetSearchBar();
     removeSearchResults();
@@ -333,32 +336,70 @@ $reviewForm.addEventListener('submit', createReview);
 
 function createReview(event) {
   event.preventDefault();
-  var reviewObj = {
-    title: $reviewForm.elements.movieTitleForm.value,
-    posterUrl: $reviewForm.elements.posterUrlForm.value,
-    reviewNotes: $reviewForm.elements.reviewNotesForm.value,
-    starRating: $starRating.getAttribute('data-star'),
-    reviewId: data.nextReviewId
-  };
-  data.nextReviewId++;
-  data.reviews.unshift(reviewObj);
-  $reviewFormImg.setAttribute('src', 'images/placeholder-image-poster.png');
+  var reviewObj = {};
   var $stars = document.querySelectorAll('.star-icon');
-  for (let i = 0; i < $stars.length; i++) {
-    $stars[i].className = 'far fa-star star-icon';
+  if (data.editing === null) {
+    reviewObj = {
+      title: $reviewForm.elements.movieTitleForm.value,
+      posterUrl: $reviewForm.elements.posterUrlForm.value,
+      reviewNotes: $reviewForm.elements.reviewNotesForm.value,
+      starRating: $starRating.getAttribute('data-star'),
+      reviewId: data.nextReviewId
+    };
+    data.nextReviewId++;
+    data.reviews.unshift(reviewObj);
+    $reviewFormImg.setAttribute('src', 'images/placeholder-image-poster.png');
+    for (let i = 0; i < $stars.length; i++) {
+      $stars[i].className = 'far fa-star star-icon';
+    }
+    $reviewList.prepend(renderReview(reviewObj));
+    var $noReviewsMsg = document.querySelector('#no-reviews-msg');
+    $noReviewsMsg.className = 'column-full text-align-center hidden';
+    data.view = 'reviews-view';
+    $reviewsView.className = '';
+    $reviewFormView.className = 'hidden';
+    $searchView.className = 'hidden';
+    $resultsView.className = 'hidden';
+    $starRating.setAttribute('data-star', '0');
+    $reviewForm.reset();
+    resetSearchBar();
+    removeSearchResults();
+  } else if (data.editing !== null) {
+    reviewObj = {
+      title: $reviewForm.elements.movieTitleForm.value,
+      posterUrl: $reviewForm.elements.posterUrlForm.value,
+      reviewNotes: $reviewForm.elements.reviewNotesForm.value,
+      starRating: $starRating.getAttribute('data-star'),
+      reviewId: data.editing.reviewId
+    };
+    for (let i = 0; i < data.reviews.length; i++) {
+      if (data.reviews[i].reviewId === reviewObj.reviewId) {
+        data.reviews[i] = reviewObj;
+      }
+    }
+    var $liElementList = document.querySelectorAll('.review-card');
+    for (let i = 0; i < $liElementList.length; i++) {
+      if (reviewObj.reviewId === parseInt($liElementList[i].getAttribute('data-review-id'))) {
+        $liElementList[i].replaceWith(renderReview(reviewObj));
+      }
+    }
+    data.editing = null;
+    $reviewFormImg.setAttribute('src', 'images/placeholder-image-poster.png');
+    for (let i = 0; i < $stars.length; i++) {
+      $stars[i].className = 'far fa-star star-icon';
+    }
+    data.view = 'reviews-view';
+    $reviewsView.className = '';
+    $reviewFormView.className = 'hidden';
+    $searchView.className = 'hidden';
+    $resultsView.className = 'hidden';
+    var $reviewFormH1 = document.querySelector('#review-form-h1');
+    $reviewFormH1.textContent = 'New Review';
+    $starRating.setAttribute('data-star', '0');
+    $reviewForm.reset();
+    resetSearchBar();
+    removeSearchResults();
   }
-  $reviewList.prepend(renderReview(reviewObj));
-  var $noReviewsMsg = document.querySelector('#no-reviews-msg');
-  $noReviewsMsg.className = 'column-full text-align-center hidden';
-  data.view = 'reviews-view';
-  $reviewsView.className = '';
-  $reviewFormView.className = 'hidden';
-  $searchView.className = 'hidden';
-  $resultsView.className = 'hidden';
-  $starRating.setAttribute('data-star', '0');
-  $reviewForm.reset();
-  resetSearchBar();
-  removeSearchResults();
 }
 
 function renderReview(reviewObj) {
@@ -445,6 +486,7 @@ function editReview(event) {
     }
     $reviewForm.elements.movieTitleForm.value = data.editing.title;
     $reviewForm.elements.posterUrlForm.value = data.editing.posterUrl;
+    $reviewForm.elements.reviewNotesForm.value = data.editing.reviewNotes;
     if ($reviewForm.elements.posterUrlForm.value === 'N/A') {
       $reviewFormImg.setAttribute('src', 'images/noposter.png');
     } else {
