@@ -112,6 +112,7 @@ i.pen-icon {
   position: absolute;
   bottom: 1.5rem;
   right: 1.5rem;
+  cursor: pointer;
 }
 
 .search-img-container {
@@ -313,8 +314,7 @@ i.pen-icon {
   }
 
   .dialogue-box-movie-details {
-    width: 690px;
-    height: 550px;
+    width: 680px;
   }
 
   .dialogue-poster {
@@ -322,7 +322,9 @@ i.pen-icon {
   }
 
   .dialogue-poster-img {
-    width: 100%;
+    height: 100%;
+    width: 340px;
+    object-fit: cover;
   }
 
   .review-form-img {
