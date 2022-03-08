@@ -196,6 +196,7 @@ i.pen-icon {
   background: none;
   border: none;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 #cancel-button {
@@ -219,7 +220,8 @@ i.pen-icon {
 .button-style {
   font-family: Poppins, sans-serif;
   font-weight: 500;
-  padding: 4px 8px;
+  font-size: 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 4px;
 }
 
