@@ -88,12 +88,14 @@ $navBar.addEventListener('click', swapViewNav);
 
 function swapViewNav(event) {
   var $deleteButton = document.querySelector('#delete-button');
+  var $reviewFormH1 = document.querySelector('#review-form-h1');
   if (event.target.matches('#nav-search')) {
     data.view = 'search-view';
     $searchView.className = '';
     $reviewsView.className = 'hidden';
     $resultsView.className = 'hidden';
     $reviewFormView.className = 'hidden';
+    $reviewFormH1.textContent = 'New Review';
     $deleteButton.className = 'yellow-text visibility-hidden';
     data.editing = null;
     resetReviewForm();
@@ -105,6 +107,7 @@ function swapViewNav(event) {
     $reviewsView.className = 'hidden';
     $searchView.className = 'hidden';
     $resultsView.className = 'hidden';
+    $reviewFormH1.textContent = 'New Review';
     $deleteButton.className = 'yellow-text visibility-hidden';
     data.editing = null;
     resetReviewForm();
@@ -116,6 +119,7 @@ function swapViewNav(event) {
     $reviewFormView.className = 'hidden';
     $searchView.className = 'hidden';
     $resultsView.className = 'hidden';
+    $reviewFormH1.textContent = 'New Review';
     $deleteButton.className = 'yellow-text visibility-hidden';
     data.editing = null;
     resetReviewForm();
@@ -509,6 +513,7 @@ function editReview(event) {
     for (let i = $starAmt; i < $stars.length; i++) {
       $stars[i].className = 'far fa-star star-icon';
     }
+    $starRating.setAttribute('data-star', data.editing.starRating);
   }
 }
 
