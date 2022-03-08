@@ -235,24 +235,12 @@ i.pen-icon {
   margin: 0;
 }
 
-.marg-1-2-bot {
-  margin-bottom: 0.5rem;
-}
-
 .marg-1-bot {
   margin-bottom: 1rem;
 }
 
 .marg-1-1-2-bot {
   margin-bottom: 1.5rem;
-}
-
-.no-pad {
-  padding: 0;
-}
-
-.pad-1-2-top {
-  padding-top: 0.5rem;
 }
 
 .pad-1-2-left-right {
@@ -288,10 +276,6 @@ i.pen-icon {
   text-align: center;
 }
 
-.justify-center {
-  justify-content: center;
-}
-
 .space-between {
   justify-content: space-between;
 }
@@ -319,10 +303,6 @@ i.pen-icon {
 @media screen and (min-width: 768px) {
   .pad-1-1-2-left {
     padding-left: 1.5rem;
-  }
-
-  .pad-1-right {
-    padding-right: 1rem;
   }
 
   h3.result-title {

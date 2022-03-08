@@ -17,11 +17,6 @@
   flex-wrap: wrap;
 }
 
-.row-no-wrap {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
 .column-full,
 .column-half,
 .column-half-review,

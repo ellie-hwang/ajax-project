@@ -53,7 +53,7 @@ function renderSearchResult(resultObj) {
   var $imgEl = document.createElement('img');
   $imgEl.className = 'search-img';
   if (resultObj.Poster === 'N/A') {
-    $imgEl.setAttribute('src', 'images/noposter.png');
+    $imgEl.setAttribute('src', 'images/no-poster.png');
   } else {
     $imgEl.setAttribute('src', resultObj.Poster);
   }
@@ -225,7 +225,7 @@ function renderMovieDetails(movieObj) {
   var $imgEl = document.createElement('img');
   $imgEl.className = 'dialogue-poster-img';
   if (movieObj.Poster === 'N/A') {
-    $imgEl.setAttribute('src', 'images/noposter.png');
+    $imgEl.setAttribute('src', 'images/no-poster.png');
   } else {
     $imgEl.setAttribute('src', movieObj.Poster);
   }
@@ -301,7 +301,7 @@ function popReviewForm(event) {
       $reviewForm.elements.movieTitleForm.value = movieObj.Title;
       $reviewForm.elements.posterUrlForm.value = movieObj.Poster;
       if ($reviewForm.elements.posterUrlForm.value === 'N/A') {
-        $reviewFormImg.setAttribute('src', 'images/noposter.png');
+        $reviewFormImg.setAttribute('src', 'images/no-poster.png');
       } else {
         $reviewFormImg.setAttribute('src', $reviewForm.elements.posterUrlForm.value);
       }
@@ -497,7 +497,7 @@ function editReview(event) {
     $reviewForm.elements.posterUrlForm.value = data.editing.posterUrl;
     $reviewForm.elements.reviewNotesForm.value = data.editing.reviewNotes;
     if ($reviewForm.elements.posterUrlForm.value === 'N/A') {
-      $reviewFormImg.setAttribute('src', 'images/noposter.png');
+      $reviewFormImg.setAttribute('src', 'images/no-poster.png');
     } else {
       $reviewFormImg.setAttribute('src', $reviewForm.elements.posterUrlForm.value);
     }
