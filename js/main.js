@@ -87,12 +87,14 @@ var $navBar = document.querySelector('#nav-bar');
 $navBar.addEventListener('click', swapViewNav);
 
 function swapViewNav(event) {
+  var $deleteButton = document.querySelector('#delete-button');
   if (event.target.matches('#nav-search')) {
     data.view = 'search-view';
     $searchView.className = '';
     $reviewsView.className = 'hidden';
     $resultsView.className = 'hidden';
     $reviewFormView.className = 'hidden';
+    $deleteButton.className = 'yellow-text visibility-hidden';
     data.editing = null;
     resetReviewForm();
     resetSearchBar();
@@ -103,6 +105,7 @@ function swapViewNav(event) {
     $reviewsView.className = 'hidden';
     $searchView.className = 'hidden';
     $resultsView.className = 'hidden';
+    $deleteButton.className = 'yellow-text visibility-hidden';
     data.editing = null;
     resetReviewForm();
     resetSearchBar();
@@ -113,6 +116,7 @@ function swapViewNav(event) {
     $reviewFormView.className = 'hidden';
     $searchView.className = 'hidden';
     $resultsView.className = 'hidden';
+    $deleteButton.className = 'yellow-text visibility-hidden';
     data.editing = null;
     resetReviewForm();
     resetSearchBar();
@@ -338,6 +342,7 @@ function createReview(event) {
   event.preventDefault();
   var reviewObj = {};
   var $stars = document.querySelectorAll('.star-icon');
+  var $deleteButton = document.querySelector('#delete-button');
   if (data.editing === null) {
     reviewObj = {
       title: $reviewForm.elements.movieTitleForm.value,
@@ -361,6 +366,7 @@ function createReview(event) {
     $searchView.className = 'hidden';
     $resultsView.className = 'hidden';
     $starRating.setAttribute('data-star', '0');
+    $deleteButton.className = 'yellow-text visibility-hidden';
     $reviewForm.reset();
     resetSearchBar();
     removeSearchResults();
@@ -396,6 +402,7 @@ function createReview(event) {
     var $reviewFormH1 = document.querySelector('#review-form-h1');
     $reviewFormH1.textContent = 'New Review';
     $starRating.setAttribute('data-star', '0');
+    $deleteButton.className = 'yellow-text visibility-hidden';
     $reviewForm.reset();
     resetSearchBar();
     removeSearchResults();
@@ -474,6 +481,8 @@ function editReview(event) {
     data.view = 'review-form-view';
     var $reviewFormH1 = document.querySelector('#review-form-h1');
     $reviewFormH1.textContent = 'Edit Review';
+    var $deleteButton = document.querySelector('#delete-button');
+    $deleteButton.className = 'yellow-text';
     $reviewFormView.className = '';
     $reviewsView.className = 'hidden';
     $closestLi = event.target.closest('li');
