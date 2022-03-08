@@ -511,3 +511,11 @@ function editReview(event) {
     }
   }
 }
+
+var $deleteButton = document.querySelector('#delete-button');
+$deleteButton.addEventListener('click', showDeleteConfirm);
+
+function showDeleteConfirm(event) {
+  var $modalDelete = document.querySelector('#modal-delete');
+  $modalDelete.className = 'modal-bg';
+}
