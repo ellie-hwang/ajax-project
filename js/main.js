@@ -527,3 +527,30 @@ function closeModalDelete(event) {
   var $modalDelete = document.querySelector('#modal-delete');
   $modalDelete.className = 'modal-bg hidden';
 }
+
+var $deleteDialogueButton = document.querySelector('#delete-dialogue-button');
+$deleteDialogueButton.addEventListener('click', deleteReview);
+
+function deleteReview(event) {
+  var $reviewIndex = null;
+  for (let i = 0; i < data.reviews.length; i++) {
+    if (data.reviews[i].reviewId === data.editing.reviewId) {
+      $reviewIndex = i;
+    }
+  }
+  data.reviews.splice($reviewIndex, 1);
+  var $liElementList = document.querySelectorAll('.review-card');
+  for (let i = 0; i < $liElementList.length; i++) {
+    if (JSON.parse($liElementList[i].getAttribute('data-review-id')) === data.editing.reviewId) {
+      $liElementList[i].remove();
+    }
+  }
+  data.editing = null;
+  $reviewsView.className = '';
+  $searchView.className = 'hidden';
+  $resultsView.className = 'hidden';
+  $reviewFormView.className = 'hidden';
+  data.view = 'reviews-view';
+  var $modalDelete = document.querySelector('#modal-delete');
+  $modalDelete.className = 'modal-bg hidden';
+}
