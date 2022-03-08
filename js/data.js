@@ -18,5 +18,3 @@ function saveEntry(event) {
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('reviews-local-storage', dataJSON);
 }
-
-// localStorage.clear();
