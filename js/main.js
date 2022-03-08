@@ -519,3 +519,11 @@ function showDeleteConfirm(event) {
   var $modalDelete = document.querySelector('#modal-delete');
   $modalDelete.className = 'modal-bg';
 }
+
+var $cancelButton = document.querySelector('#cancel-button');
+$cancelButton.addEventListener('click', closeModalDelete);
+
+function closeModalDelete(event) {
+  var $modalDelete = document.querySelector('#modal-delete');
+  $modalDelete.className = 'modal-bg hidden';
+}
