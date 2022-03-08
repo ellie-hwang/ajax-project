@@ -183,6 +183,12 @@ i.pen-icon {
   cursor: pointer;
 }
 
+#delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 #new-button {
   background-color: #ffc52f;
   border: none;
