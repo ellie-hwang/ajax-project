@@ -17,7 +17,7 @@ function handleSearch(event) {
     }
   }
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://www.omdbapi.com/?s=' + $movieTitle + '&apikey=fd3f5e28');
+  xhr.open('GET', 'https://www.omdbapi.com/?s=' + $movieTitle + '&apikey=fd3f5e28');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     var $searchResultsRaw = xhr.response.Search;
@@ -210,7 +210,7 @@ function showMovieDetails(event) {
     var $imdbID = $closestLi.getAttribute('data-entry-id');
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://www.omdbapi.com/?i=' + $imdbID + '&apikey=fd3f5e28');
+    xhr.open('GET', 'https://www.omdbapi.com/?i=' + $imdbID + '&apikey=fd3f5e28');
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
       var movieObj = xhr.response;
@@ -298,7 +298,7 @@ function popReviewForm(event) {
     $closestLi = event.target.closest('li');
     var $imdbID = $closestLi.getAttribute('data-entry-id');
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://www.omdbapi.com/?i=' + $imdbID + '&apikey=fd3f5e28');
+    xhr.open('GET', 'https://www.omdbapi.com/?i=' + $imdbID + '&apikey=fd3f5e28');
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
       var movieObj = xhr.response;
