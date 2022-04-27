@@ -7,6 +7,7 @@ $searchForm.addEventListener('submit', handleSearch);
 
 function handleSearch(event) {
   event.preventDefault();
+  var $spinner = document.querySelector('.lds-ring');
   var $movieTitleRaw = $searchForm.elements.movieTitle.value;
   var $movieTitle = '';
   for (let i = 0; i < $movieTitleRaw.length; i++) {
@@ -27,12 +28,14 @@ function handleSearch(event) {
       var $pNoResult = document.querySelector('#p-no-results');
       $pNoResult.className = 'white-text text-align-center';
       $searchForm.elements.movieTitle.value = '';
+      $spinner.classList.add('hidden');
     } else {
       data.view = 'results-view';
       for (let i = 0; i < $searchResultsRaw.length; i++) {
         var $result = renderSearchResult($searchResultsRaw[i]);
         $resultsList.appendChild($result);
       }
+      $spinner.classList.add('hidden');
       $searchView.className = 'hidden';
       $resultsView.className = '';
       $searchForm.reset();
