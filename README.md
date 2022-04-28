@@ -1,8 +1,8 @@
-# movII
+# MovII
 
-A dynamic HTML, CSS, and JavaScript project for movie fans that want to write movie reviews.
+A dynamic HTML, CSS, and JavaScript project for film lovers who want to write moview reviews.
 
-movII was created for movie fans that want to keep a journal of all the reviews they have written. Reviews can be subjective and although there are reputable websites with professional critic reviews, sometimes fans want to form their opnion on the movies they've watched.
+MovII was created for movie fans that want to keep a journal of all the reviews they have written. Reviews can be subjective and although there are reputable websites with professional critic reviews, sometimes fans want to form their opnion on the movies they've watched.
 
 ## Technologies Used
 
@@ -12,7 +12,7 @@ movII was created for movie fans that want to keep a journal of all the reviews 
 
 ## Live Demo
 
-Try the application live at [https://acareum.herokuapp.com/](https://acareum.herokuapp.com/)
+Try the application live at [https://ellie-hwang.github.io/movii/](https://ellie-hwang.github.io/movii/)
 
 ## Features
 
